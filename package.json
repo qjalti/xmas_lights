@@ -1,0 +1,25 @@
+{
+  "name": "xmas",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "qjalti <qjalti@gmail.com>",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "e-build": "electron-builder --win --config.compression=maximum && explorer dist",
+    "epf": "npx prettier . --write && npx eslint . --fix"
+  },
+  "devDependencies": {
+    "@eslint/css": "^0.14.1",
+    "@eslint/js": "^9.39.1",
+    "@eslint/json": "^0.14.0",
+    "@eslint/markdown": "^7.5.1",
+    "electron": "^39.2.4",
+    "electron-builder": "^26.0.12",
+    "eslint": "^9.39.1",
+    "globals": "^16.5.0",
+    "prettier": "3.7.3"
+  }
+}
