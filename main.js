@@ -1,4 +1,11 @@
-const { app, BrowserWindow, Tray, Menu, nativeImage } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  Tray,
+  Menu,
+  nativeImage,
+  screen,
+} = require("electron");
 
 const PATH = require("path");
 
@@ -7,10 +14,10 @@ const PATH_TO_TRAY_ICON = "./assets/christmas-lights-32.ico";
 
 let tray = null;
 
-const createWindow = () => {
+const createWindow = (width) => {
   const WIN = new BrowserWindow({
-    width: 2560,
-    height: 100,
+    width: width,
+    height: 96,
     x: 0,
     y: 0,
     frame: false,
@@ -23,38 +30,25 @@ const createWindow = () => {
     minimizable: false,
     icon: nativeImage.createFromPath(PATH_TO_ICON),
   });
+  // WIN.webContents.openDevTools();
 
   WIN.setIgnoreMouseEvents(true);
   WIN.loadFile("index.html").then(() => false);
 };
 
-const createWindow2 = () => {
-  const WIN2 = new BrowserWindow({
-    width: 2560,
-    height: 100,
-    x: -2560,
-    y: 0,
-    frame: false,
-    alwaysOnTop: true,
-    transparent: true,
-    resizable: false,
-    hasShadow: false,
-    movable: false,
-    focusable: false,
-    minimizable: false,
-    icon: nativeImage.createFromPath(PATH_TO_ICON),
-  });
-
-  WIN2.setIgnoreMouseEvents(true);
-  WIN2.loadFile("index.html").then(() => false);
-};
-
 app.whenReady().then(() => {
+  const primaryDisplay = screen.getPrimaryDisplay()
+  const {width} = primaryDisplay.workAreaSize
+
+  const displays = screen.getAllDisplays()
+
+  console.log(displays)
+
   tray = new Tray(PATH.join(__dirname, PATH_TO_TRAY_ICON));
 
   const CONTEXT_MENU = Menu.buildFromTemplate([
     {
-      label: "Exit",
+      label: "Закрыть",
       type: "normal",
       click: () => {
         app.quit();
@@ -62,9 +56,9 @@ app.whenReady().then(() => {
     },
   ]);
 
-  tray.setToolTip("lightRope");
+  tray.setToolTip("Новогодняя гирлянда");
   tray.setContextMenu(CONTEXT_MENU);
 
-  createWindow();
-  createWindow2();
+  createWindow(width)
+  createWindow(width)
 });

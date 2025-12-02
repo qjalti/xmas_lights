@@ -12,9 +12,16 @@
     "epf": "npx prettier . --write && npx eslint . --fix"
   },
   "build": {
+    "appId": "com.qjalti.lightRope.app",
+    "productName": "Новогодняя гирлянда",
     "win": {
       "target": "nsis",
       "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false
     }
   },
   "devDependencies": {
