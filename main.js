@@ -37,12 +37,12 @@ const createWindow = (width) => {
 };
 
 app.whenReady().then(() => {
-  const primaryDisplay = screen.getPrimaryDisplay()
-  const {width} = primaryDisplay.workAreaSize
+  const primaryDisplay = screen.getPrimaryDisplay();
+  const { width } = primaryDisplay.workAreaSize;
 
-  const displays = screen.getAllDisplays()
+  const displays = screen.getAllDisplays();
 
-  console.log(displays)
+  console.log(displays);
 
   tray = new Tray(PATH.join(__dirname, PATH_TO_TRAY_ICON));
 
@@ -59,6 +59,6 @@ app.whenReady().then(() => {
   tray.setToolTip("Новогодняя гирлянда");
   tray.setContextMenu(CONTEXT_MENU);
 
-  createWindow(width)
-  createWindow(width)
+  createWindow(width);
+  createWindow(width);
 });
