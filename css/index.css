@@ -36,6 +36,7 @@ body {
   animation-name: flash-1;
   -webkit-animation-duration: 2s;
   animation-duration: 2s;
+  will-change: transform, opacity;
 }
 
 .lightrope li:nth-child(2n + 1) {

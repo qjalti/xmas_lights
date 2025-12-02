@@ -11,6 +11,12 @@
     "e-build": "electron-builder --win --config.compression=maximum && explorer dist",
     "epf": "npx prettier . --write && npx eslint . --fix"
   },
+  "build": {
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    }
+  },
   "devDependencies": {
     "@eslint/css": "^0.14.1",
     "@eslint/js": "^9.39.1",
