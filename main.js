@@ -17,11 +17,12 @@ let tray = null;
 const createWindow = ({ width, x, y }) => {
   const WIN = new BrowserWindow({
     width: width,
-    height: 96,
+    height: 72,
+    // height: 1024,
     x: x,
     y: y,
     frame: false,
-    alwaysOnTop: true,
+    alwaysOnTop: false,
     transparent: true,
     resizable: false,
     hasShadow: false,
@@ -32,8 +33,14 @@ const createWindow = ({ width, x, y }) => {
   });
   // WIN.webContents.openDevTools();
 
+  WIN.setAlwaysOnTop(true, "screen-saver");
   WIN.setIgnoreMouseEvents(true);
   WIN.loadFile("index.html").then(() => false);
+
+  WIN.on("hide", () => {
+    WIN.setAlwaysOnTop(true, "screen-saver");
+    WIN.show();
+  });
 };
 
 app.whenReady().then(() => {
