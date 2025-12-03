@@ -14,7 +14,7 @@ const PATH_TO_TRAY_ICON = "./assets/christmas-lights-32.ico";
 
 let tray = null;
 
-const createWindow = ({width, x, y}) => {
+const createWindow = ({ width, x, y }) => {
   const WIN = new BrowserWindow({
     width: width,
     height: 96,
@@ -59,6 +59,6 @@ app.whenReady().then(() => {
       width: display.bounds.width,
       x: display.bounds.x,
       y: display.bounds.y,
-    })
-  })
+    });
+  });
 });
