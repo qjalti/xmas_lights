@@ -34,11 +34,13 @@ const createWindow = ({ width, x, y }) => {
   // WIN.webContents.openDevTools();
 
   WIN.setAlwaysOnTop(true, "screen-saver");
+  WIN.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   WIN.setIgnoreMouseEvents(true);
   WIN.loadFile("index.html").then(() => false);
 
   WIN.on("hide", () => {
     WIN.setAlwaysOnTop(true, "screen-saver");
+    WIN.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
     WIN.show();
   });
 };
