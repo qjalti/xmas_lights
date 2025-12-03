@@ -14,12 +14,12 @@ const PATH_TO_TRAY_ICON = "./assets/christmas-lights-32.ico";
 
 let tray = null;
 
-const createWindow = (width) => {
+const createWindow = ({width, x, y}) => {
   const WIN = new BrowserWindow({
     width: width,
     height: 96,
-    x: 0,
-    y: 0,
+    x: x,
+    y: y,
     frame: false,
     alwaysOnTop: true,
     transparent: true,
@@ -37,12 +37,7 @@ const createWindow = (width) => {
 };
 
 app.whenReady().then(() => {
-  const primaryDisplay = screen.getPrimaryDisplay();
-  const { width } = primaryDisplay.workAreaSize;
-
   const displays = screen.getAllDisplays();
-
-  console.log(displays);
 
   tray = new Tray(PATH.join(__dirname, PATH_TO_TRAY_ICON));
 
@@ -59,6 +54,11 @@ app.whenReady().then(() => {
   tray.setToolTip("Новогодняя гирлянда");
   tray.setContextMenu(CONTEXT_MENU);
 
-  createWindow(width);
-  createWindow(width);
+  displays.map((display) => {
+    createWindow({
+      width: display.bounds.width,
+      x: display.bounds.x,
+      y: display.bounds.y,
+    })
+  })
 });
