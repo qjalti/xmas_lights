@@ -65,9 +65,9 @@ app.whenReady().then(() => {
       type: "normal",
       click: () => {
         const WIN = new BrowserWindow({
-          width: 256,
-          height: 256,
-          x: primaryDisplayWidth - 32 - 256,
+          width: 384,
+          height: 384,
+          x: primaryDisplayWidth - 32 - 384,
           y: primaryDisplayHeight - 32 - 256,
           resizable: false,
           minimizable: false,
