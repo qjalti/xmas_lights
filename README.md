@@ -15,6 +15,7 @@
 ### Скриншот
 
 ![Гирлянда](screenshots/screenshot.1.png)
+![Анимированная гирлянда](screenshots/screenshot.1.gif)
 
 ## Загрузка
 
