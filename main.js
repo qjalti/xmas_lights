@@ -15,6 +15,7 @@ const PATH_TO_ICON = "./assets/icon.ico";
 const PATH_TO_TRAY_ICON = "./assets/christmas-lights-32.ico";
 
 let tray = null;
+let windows = [];
 
 const createWindow = ({ width, x, y }) => {
   const WIN = new BrowserWindow({
@@ -40,15 +41,11 @@ const createWindow = ({ width, x, y }) => {
   WIN.setIgnoreMouseEvents(true);
   WIN.loadFile("index.html").then(() => false);
 
-  WIN.on("hide", () => {
-    WIN.setAlwaysOnTop(true, "floating");
-    WIN.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
-    WIN.show();
-  });
-
   setInterval(() => {
     WIN.setAlwaysOnTop(true, "floating");
   }, 5000);
+
+  windows.push(...windows, WIN);
 };
 
 app.whenReady().then(() => {
@@ -80,7 +77,83 @@ app.whenReady().then(() => {
           },
         });
         WIN.loadFile("about.html").then(() => false);
+        windows.push(...windows, WIN);
       },
+    },
+    {
+      label: "Скрыть на 1 час",
+      type: "normal",
+      click: () => {
+        windows.map((el) => {
+          el.hide();
+          setTimeout(
+            () => {
+              el.show();
+            },
+            1000 * 60 * 60,
+          );
+        });
+      },
+    },
+    {
+      label: "Скрыть",
+      type: "submenu",
+      submenu: [
+        {
+          label: "15 секунд",
+          type: "normal",
+          click: () => {
+            windows.map((el) => {
+              el.hide();
+              setTimeout(() => {
+                el.show();
+              }, 1000 * 15);
+            });
+          },
+        },
+        {
+          label: "Скрыть на 1 минуту",
+          type: "normal",
+          click: () => {
+            windows.map((el) => {
+              el.hide();
+              setTimeout(() => {
+                el.show();
+              }, 1000 * 60);
+            });
+          },
+        },
+        {
+          label: "Скрыть на 15 минут",
+          type: "normal",
+          click: () => {
+            windows.map((el) => {
+              el.hide();
+              setTimeout(
+                () => {
+                  el.show();
+                },
+                1000 * 60 * 15,
+              );
+            });
+          },
+        },
+        {
+          label: "Скрыть на 8 часов",
+          type: "normal",
+          click: () => {
+            windows.map((el) => {
+              el.hide();
+              setTimeout(
+                () => {
+                  el.show();
+                },
+                1000 * 60 * 60 * 8,
+              );
+            });
+          },
+        },
+      ],
     },
     {
       type: "separator",
