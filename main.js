@@ -81,21 +81,6 @@ app.whenReady().then(() => {
       },
     },
     {
-      label: "Скрыть на 1 час",
-      type: "normal",
-      click: () => {
-        windows.map((el) => {
-          el.hide();
-          setTimeout(
-            () => {
-              el.show();
-            },
-            1000 * 60 * 60,
-          );
-        });
-      },
-    },
-    {
       label: "Скрыть",
       type: "submenu",
       submenu: [
@@ -134,6 +119,21 @@ app.whenReady().then(() => {
                   el.show();
                 },
                 1000 * 60 * 15,
+              );
+            });
+          },
+        },
+        {
+          label: "Скрыть на 1 час",
+          type: "normal",
+          click: () => {
+            windows.map((el) => {
+              el.hide();
+              setTimeout(
+                () => {
+                  el.show();
+                },
+                1000 * 60 * 60,
               );
             });
           },
