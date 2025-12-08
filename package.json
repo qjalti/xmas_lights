@@ -8,8 +8,9 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
+    "fb": "npm run epf & npm run e-build",
     "e-build": "electron-builder --win --config.compression=maximum && explorer dist",
-    "epf": "npx prettier . --write && npx eslint . --fix"
+    "epf": "npx eslint . --fix & npx prettier . --write"
   },
   "build": {
     "appId": "com.qjalti.lightRope.app",
